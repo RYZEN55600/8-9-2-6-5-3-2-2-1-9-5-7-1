@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quer me dar 20 reais?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000000; /* Fundo preto */
+            color: #FFFFFF; /* Fonte branca */
+        }
+        .container {
+            text-align: center;
+            position: relative;
+            width: 90%; /* Ajuste para responsividade */
+            max-width: 600px; /* Limita a largura máxima em telas grandes */
+            padding: 20px; /* Espaço interno para telas pequenas */
+        }
+        h1 {
+            font-size: 3em; /* Tamanho da pergunta aumentado */
+            margin-bottom: 40px;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap; /* Permite quebra de linha em telas pequenas */
+        }
+        button {
+            padding: 15px 25px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            flex: 1; /* Botões se expandem para ocupar a largura disponível */
+            max-width: 120px; /* Limita a largura máxima dos botões */
+        }
+        #yes-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #no-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        #message {
+            font-size: 2em; /* Aumenta o tamanho da frase */
+            margin-top: 20px;
+            display: none; /* Inicialmente oculto */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quer me dar 20 reais?</h1>
+        <div class="button-container">
+            <button id="yes-btn">Sim</button>
+            <button id="no-btn">Não</button>
+        </div>
+        <p id="message">Vou cobrar você</p> <!-- Aumentado o tamanho da frase -->
+    </div>
+    <script>
+        const yesBtn = document.getElementById("yes-btn");
+        const noBtn = document.getElementById("no-btn");
+        const message = document.getElementById("message");
+
+        yesBtn.addEventListener("click", () => {
+            message.style.display = "block"; // Exibe a mensagem
+            noBtn.disabled = true; // Desabilita o botão "Não"
+        });
+
+        noBtn.addEventListener("click", () => {
+            const container = document.querySelector(".container");
+            const maxWidth = container.clientWidth - noBtn.offsetWidth;
+            const maxHeight = container.clientHeight - noBtn.offsetHeight;
+
+            const randomX = Math.floor(Math.random() * maxWidth);
+            const randomY = Math.floor(Math.random() * maxHeight);
+
+            noBtn.style.position = "absolute";
+            noBtn.style.left = `${randomX}px`;
+            noBtn.style.top = `${randomY}px`;
+        });
+    </script>
+</body>
+</html>
